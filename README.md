@@ -9,6 +9,8 @@ Switching to a tag-based music player, from one based on directory structure, pr
 * [tqdm](https://tqdm.github.io/) **4.62.3** - progress bars make everything better
 * [rich](https://rich.readthedocs.io/en/stable/introduction.html) **10.16.2**- colors make things better, too
 * [pywin32](https://pypi.org/project/pywin32/) - needed to adjust file attributes, such as unhiding.
+* [requests](https://docs.python-requests.org/en/latest/) **2.27.1** - consume APIs or get HTML content for scraping
+* [BeautifulSoup4](https://pypi.org/project/beautifulsoup4/) **4.10.0** - scrape [last.fm](last.fm) album pages due to failure of API
 * [pandas](https://pandas.pydata.org/) **1.3.5** - for some reporting outputs. Python's [CSV](https://docs.python.org/3/library/csv.html) could be used instead.
 
 *Prior work: Ensure all album folder names follow format `<ALBUM-NAME> (<YEAR>) [<Format>]`*
