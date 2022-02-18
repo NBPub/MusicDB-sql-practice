@@ -48,9 +48,9 @@ The fix step is the main thing that varies. For more complex fixes (user-decisio
 
 | fixes_ | Problem | Notes |
 | :----: | --- | --- |
-| `years_format.py` | Tagged date not in XXXX format | If tagged year and year in folder agree, fix file and save. If not, save to table and check last.fm for data |
-| `years_mismatch.py` | Tagged date and Folder date do not agree | Uses table from above. Retags files or renames folder depening on which one last.fm confirms |
-| `years_NullFill.py` | No tag date for song | Adds tag date based on folder year (all have been checked from above step) |
+| `year_format.py` | Tagged date not in XXXX format | If tagged year and year in folder agree, fix file and save. If not, save to table and check last.fm for data |
+| `year_mismatch.py` | Tagged date and Folder date do not agree | Uses table from above. Retags files or renames folder depening on which one last.fm confirms |
+| `year_NullFill.py` | No tag date for song | Adds tag date based on folder year (all have been checked from above step) |
 | `tagpicture.py` | I don't want embedded images in files | Delete all tracks with picture in tag, if folder lacks picture, then save the first one in the folder. |
 | `nopic.py` | No Cover Art | Use Artist/Album to get picture from last.fm, if not found save to table with link for [wikipedia](https://en.wikipedia.org/wiki/Main_Page) search |
 | `hiddenpic.py` | Hidden image files, Cover Art already there. Empty image files leftover from previous script fix. | Various iterations to keep file and delete rest, based on file size |
