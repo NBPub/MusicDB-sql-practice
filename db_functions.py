@@ -83,7 +83,7 @@ def make_tables(con):
                  FOREIGN KEY (album) REFERENCES Albums (album_name)
                  FOREIGN KEY (artist) REFERENCES Artists (name))''') 
                 
-    Exceptions Table
+    # Exceptions Table
     con.execute('''CREATE TABLE IF NOT EXISTS Exceptions
                 (artist TEXT, album TEXT, type TEXT, path TEXT,
                  FOREIGN KEY (album) REFERENCES Albums (album_name)
