@@ -16,7 +16,7 @@ Switching to a tag-based music player, from one based on directory structure, pr
 *Prior work: Ensure all album folder names follow format `<ALBUM-NAME> (<YEAR>) [<Format>]`*
 
 # Part One - DB Creation
-`db_creation.py` and `db_functions.py` serve to create the SQLite database. A timer and progress bar provide live monitoring and records of scan times. For my library, initial scans took 6-8 minutes, and subsequent scans (not the first of the day) took 1-2 minutes. Various junk is left as comments in `db_functions.py`, as this is the best way to check/apply changes to all files or folders. For example, embedded ID3 tags were first identified, secondly deleted, and thirdly ignored, over the days of scanning / fixing.
+`db_creation.py` and `db_functions.py` serve to create the SQLite database. A timer and progress bar provide live monitoring and records of scan times. For my library, initial scans took 6-8 minutes, and subsequent scans (not the first of the day) took 1-2 minutes. Various junk is left as comments in `db_functions.py`, as this is the best way to check/apply changes to all files or folders. For example, embedded ID3 pictures were first identified, secondly deleted, and thirdly ignored, over the days of scanning / fixing.
 
 My music folder is organized by artist. An artist folder contains album folders or single tracks (and potentially other hidden files). Album folders can contain tracks, images, and other files. These folders and files were used to populate 3 SQLite tables: **Artists**, **Albums**, and **Tracks**.
 
@@ -34,7 +34,7 @@ Initially I captured the date modified of the folders so I could scan for recent
 
 # Part Two - Various Fixes
 
-These are a bunch of scripts, varying in complexity to facilitate changes I wanted to make. See `fixes_artistTag.py` for the most complex example. They follow a basic structure of:
+Fixes are saved as individual scripts*, varying in complexity, to facilitate changes I wanted to make. See `fixes_artistTag.py` for the most complex example. They follow a basic structure of:
 
 1) Identify certain problem
 2) Execute SQLite query to gather problem-children
@@ -42,22 +42,24 @@ These are a bunch of scripts, varying in complexity to facilitate changes I want
 
 The fix step is the main thing that varies. For more complex fixes (user-decisions needed), I provided simple options to speed up the process. Some scripts utilize [Rich](https://rich.readthedocs.io/en/stable/introduction.html) to improve readability. Note, I used all of these with [Spyder](https://www.spyder-ide.org/), and therefore a very limited set of Rich's features.
 
+\*Two of the files have multiple parts (run it one way first, another way next). These are described in the comments.
+
 ## File Descriptions
 
 See the python files and their comments for more details. Comments in files low on the following table may be less descriptive, if the same process was described in a file higher up on the table..
 
 | fixes_ | Problem | Notes |
 | :----: | --- | --- |
-| `year_format.py` | Tagged date not in XXXX format | If tagged year and year in folder agree, fix file and save. If not, save to table and check last.fm for data |
-| `year_mismatch.py` | Tagged date and Folder date do not agree | Uses table from above. Retags files or renames folder depening on which one last.fm confirms |
-| `year_NullFill.py` | No tag date for song | Adds tag date based on folder year (all have been checked from above step) |
+| `year_format.py` | Tag date not in XXXX format | If tagged year and year in folder agree, fix file and save. If not, save to separate file and check last.fm for data |
+| `year_mismatch.py` | Tag date and Folder date do not agree | Uses file from above. Retags files or renames folder depening on which one last.fm confirms |
+| `year_NullFill.py` | No Tag date for song | Adds tag date based on folder year (all have been checked from above step) |
 | `tagpicture.py` | I don't want embedded images in files | Delete all tracks with picture in tag, if folder lacks picture, then save the first one in the folder. |
 | `nopic.py` | No Cover Art | Use Artist/Album to get picture from last.fm, if not found save to table with link for [wikipedia](https://en.wikipedia.org/wiki/Main_Page) search |
 | `hiddenpic.py` | Hidden image files, Cover Art already there. Empty image files leftover from previous script fix. | Various iterations to keep file and delete rest, based on file size |
-| `albumartist_VA to folder.py` | Tagged album artist is some form of "Various Artists" | Switch it to the artist indicated by Folder |
-| `AlbArt-VA.py` | Tagged Artist and Folder Artist disagree, no tagged album artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. |
-| `albumTag.py` | Tagged Album and Folder Album disagree | Print tag vs folder info, provide various fixing **options** for user. |
-| `artistTag.py` | Tagged Artist OR Tagged Album Artist doesn't match Folder artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. This one allows selection of multiple options. |
+| `albumartist_VA to folder.py` | Tag album artist is some form of "Various Artists" | Switch it to the artist indicated by Folder |
+| `AlbArt-VA.py` | Tag Artist and Folder Artist disagree, no Tag album artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. |
+| `albumTag.py` | Tag Album and Folder Album disagree | Print tag vs folder info, provide various fixing **options** for user. |
+| `artistTag.py` | Tag Artist OR Tag Album Artist doesn't match Folder artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. This one allows selection of multiple options. |
 
 ## Other
 `db_timer_example.txt` shows the TXT file output from `db_creation.py`, a sample database is not provided.
