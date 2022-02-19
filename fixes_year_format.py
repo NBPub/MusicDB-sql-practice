@@ -68,19 +68,16 @@ for art, alb, year, tagyear, path  in pbar:
             table.loc[ind,'Year'] = year
             table.loc[ind,'Tagged'] = tagyear
             try: # get release year from last.fm page
-                URL = f'{base}&artist={art.replace(" ","+")}&album={alb.replace(" ","+")}&format=json'
-                data = json.loads(requests.get(URL,headers=headers).content)['album']['url']
-                page = requests.get(data)
-                soup = BeautifulSoup(page.content,'html.parser')
+                URL = f'{base}&artist={art.replace(" ","+")}&album={alb.replace(" ","+")}&format=json' # API request
+                data = json.loads(requests.get(URL,headers=headers).content)['album']['url'] # from API data, get last.fm link to album page 
+                page = requests.get(data) # album page data (HTML)
+                soup = BeautifulSoup(page.content,'html.parser') # probably not most efficient way to fetch year, but it works
                 a = set(soup.find_all('dt', class_= 'catalogue-metadata-heading'))
-                
                 for element in a:
                     if element.contents[0] == 'Release Date':
                         table.loc[ind,'last.fm'] = element.next_sibling.next_sibling.contents[0]
-                    
-                        
             except:
-                table.loc[ind,'last.fm'] = '<>' # indicates failed lookup
+                table.loc[ind,'last.fm'] = '<>' # indicates failed lookup, could be failed API request or issue with scrape
                         
 if table.shape[0] > 1: # save table as HTML file, add basic results above table
     table = table.to_html()
