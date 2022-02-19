@@ -24,17 +24,17 @@ table["Result"] = table["Result"].fillna('failed lookup')
 # perform when last.FM confirms either Folder or song Tag has correct year
 # errors captured and printed at end, ex: weird characters, see Sigur Ros
 fix = table[(table.Result == 'Folder') | (table.Result == 'Tag')]
-
+# Intialize counters, error capturer
 retagged = 0
 renamed = 0
 err = ''
-
+# Iterate through table with progress bar
 pbar = tqdm(enumerate(fix.Path), total = fix.shape[0], unit = '♥')
 for i,path in pbar:
     pbar.set_postfix({fix.Result[i]:fix.index[i]})
 
     try:
-        if fix.iloc[i,3] == 'Folder': # Retag all songs if Folder correct
+        if fix.iloc[i,3] == 'Folder': # Retag all songs if Folder correct, could check if tag is correct before changing to reduce modifications
             for song in Path(path).iterdir():
                 if song.suffix == '.mp3':
                     f = EasyID3(song)
@@ -51,7 +51,7 @@ for i,path in pbar:
             newpath = Path(''.join([path[0:year_pos],str(fix.iloc[i,2]),path[year_pos+4:]]))
             Path(path).rename(newpath)
             renamed += 1
-    except Exception as e:
+    except Exception as e: # Capture error, print at end
         err = ''.join([err,'\n',str(e)])
         
 print('\n\n', 'Retagged: ', retagged, '\nRenamed: ', renamed)
