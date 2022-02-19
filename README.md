@@ -54,7 +54,7 @@ See the python files and their comments for more details. Comments in files low 
 | `year_mismatch.py` | Tag date and Folder date do not agree | Uses file from above. Retags files or renames folder depening on which one last.fm confirms |
 | `year_NullFill.py` | No Tag date for song | Adds tag date based on folder year (all have been checked from above step) |
 | `tagpicture.py` | I don't want embedded images in files | Delete all tracks with picture in tag, if folder lacks picture, then save the first one in the folder. |
-| `nopic.py` | No Cover Art | Use Artist/Album to get picture from last.fm, if not found save to table with link for [wikipedia](https://en.wikipedia.org/wiki/Main_Page) search |
+| `nopic.py` | No Cover Art | Use Artist/Album to get picture from last.fm, if not found save info with link for [wikipedia](https://en.wikipedia.org/wiki/Main_Page) search to separate file |
 | `hiddenpic.py` | Hidden image files, Cover Art already there. Empty image files leftover from previous script fix. | Various iterations to keep file and delete rest, based on file size |
 | `albumartist_VA to folder.py` | Tag album artist is some form of "Various Artists" | Switch it to the artist indicated by Folder |
 | `AlbArt-VA.py` | Tag Artist and Folder Artist disagree, no Tag album artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. |
