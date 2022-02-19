@@ -1,0 +1,14 @@
+Tables made and Artists filled
+Finished in 0.18 seconds 
+
+
+3062 albums for 0 artists.
+Finished in 0.80 seconds 
+
+
+39383 tracks for 3062 albums
+Finished in 114.46 seconds 
+
+
+Artist tallies for tracks and albums
+Finished in 1.66 seconds 
