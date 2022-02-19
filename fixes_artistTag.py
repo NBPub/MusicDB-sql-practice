@@ -16,10 +16,10 @@ from rich import print
 
 con = sqlite3.connect('database.db') # name db
 
-# First Run: Artist != (tagartist and albumartist), make sure at least one matches or exception
+# Pass 1: Artist != (tagartist and albumartist), make sure at least one matches or exception
 
-# Second Run: Artist != (tagartist or albumartist), should just be albums with mix of artists
-# ~~NOTE~~ need to add parantheses in WHERE part of sql statement for second run
+# Pass 2: Artist != (tagartist or albumartist), should just be albums with mix of artists
+# ~~NOTE~~ need to add parantheses in WHERE part of sql statement
 # Album Artist should be green. For other mismatches fix/del albumartist
 
 total = con.execute("SELECT COUNT(DISTINCT Albums.path)\
@@ -29,7 +29,7 @@ total = con.execute("SELECT COUNT(DISTINCT Albums.path)\
                     WHERE (Tracks.tagartist <> Tracks.artist OR Tracks.tagalbumartist <> Tracks.artist) \
                         AND Albums.path NOT IN (SELECT path FROM Exceptions WHERE type LIKE 'Artist %')").fetchone()[0]
                                            
-                     
+# Pass 2 query shown here                     
 query = "SELECT DISTINCT album_name, Albums.artist, Albums.path \
         FROM Tracks \
         INNER JOIN Albums \
@@ -39,7 +39,7 @@ query = "SELECT DISTINCT album_name, Albums.artist, Albums.path \
 
 subquery = "SELECT DISTINCT tagartist, tagalbumartist FROM Tracks WHERE artist = ? AND album = ?"
 
-
+# Initialize
 artreview = pd.DataFrame(columns = ['Artist','Album','TagArtist(s)', 'TagAlbArt(s)'])
 renames = {}
 count = 0
@@ -48,15 +48,11 @@ options = {0: "Exit", 1:"Del Album Artist", 2:"Change Folder Name", 3: "Flag Fol
            77: "Exception to DB: Artist Mix",
            7: "Exception to DB: Artist DirChar", 8: "Exception to DB: Artist AKA-Info",
            9: "Skip Entry"}
-
-# Options 4-6 will take another input for what to change to
-# Options 7-8 will take another input for Exception type
-subchoice456 = {4: ["artist","albumartist"], 5:["artist"], 6:["albumartist"]}
-subchoice78 = {7: "Artist DirChar", 8: "Artist Info-AKA", 77: "Artist Mix"}
+subchoice456 = {4: ["artist","albumartist"], 5:["artist"], 6:["albumartist"]} # Options 4-6 will take another input for what to change to
+subchoice78 = {7: "Artist DirChar", 8: "Artist Info-AKA", 77: "Artist Mix"} # Options 7-8 will take another input for Exception type
 
 # Here potential actions are defined as functions
 # This will allow multiple options to be selected and performed
-
 def option1(path): # Delete AlbumArtist tag
     for file in Path(path).iterdir():
         try:
@@ -123,7 +119,6 @@ def option78(path, art, alb, choice):
     
 # Iterate through query:
 # print relevant info, present options, perform actions
-
 for alb, art, path in con.execute(query):
     fetch = con.execute(subquery,(art,alb)).fetchall()
     tagartists = set([val[0] for val in fetch])
