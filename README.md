@@ -1,11 +1,11 @@
 # MusicDB-sql-practice
 Collection of python scripts used to evaluate + fix music collection. 
 
-Switching to a tag-based music player, from one based on directory structure, provided motivation to clean up my library. So I used the process to learn Python's [SQLite](https://docs.python.org/3/library/sqlite3.html#) module. Conveniently, a nice SQLite [tutorial site](https://www.sqlitetutorial.net/) uses a music library as an example. I used [DB Browser for SQLite](https://sqlitebrowser.org/) to browse the database and craft queries. [last.fm] was used as a check for album release years and to fill missing cover art. Their [API](https://www.last.fm/api/show/album.getInfo) does not provide release date, as indicated, so I had to scrape album pages for rlease year.
+Switching to a tag-based music player, from one based on directory structure, provided motivation to clean up my library. So I used the process to learn Python's [SQLite](https://docs.python.org/3/library/sqlite3.html#) module. Conveniently, a nice SQLite [tutorial site](https://www.sqlitetutorial.net/) uses a music library as an example. I used [DB Browser for SQLite](https://sqlitebrowser.org/) to browse the database and craft queries. [last.fm](last.fm) was used as a check for album release years and to fill missing cover art. Their [API](https://www.last.fm/api/show/album.getInfo) does not provide release date, as indicated, so I had to scrape album pages for release year.
 
 ## Packages Utilized:
 * [python](https://www.python.org/) **3.8.12**
-* [mutagen](https://mutagen.readthedocs.io/en/latest/) **1.45.1**  - read/modify tags *collection only contained MP3, MP4, and OGG files*
+* [mutagen](https://mutagen.readthedocs.io/en/latest/) **1.45.1**  - read/modify tags, *note: collection only contained MP3, MP4, and OGG files*
 * [tqdm](https://tqdm.github.io/) **4.62.3** - progress bars make everything better
 * [rich](https://rich.readthedocs.io/en/stable/introduction.html) **10.16.2**- colors make things better, too
 * [pywin32](https://pypi.org/project/pywin32/) - needed to adjust file attributes, such as unhiding.
@@ -16,11 +16,9 @@ Switching to a tag-based music player, from one based on directory structure, pr
 *Prior work: Ensure all album folder names follow format `<ALBUM-NAME> (<YEAR>) [<Format>]`*
 
 # Part One - DB Creation
-`db_creation.py` and `db_functions.py` serve to create the SQLite database. A timer and progress bar provide live monitoring and records of scan times. For my library, initial scans took 6-8 minutes, and subsequent scans (not the first of the day) took 1-2 minutes. Various junk is left in `db_functions.py`, as this is the easiest way to check/apply changes to files or folders. For example, embedded ID3 tags were first identified, secondly deleted, and thirdly ignored, over the days of scanning / fixing.
+`db_creation.py` and `db_functions.py` serve to create the SQLite database. A timer and progress bar provide live monitoring and records of scan times. For my library, initial scans took 6-8 minutes, and subsequent scans (not the first of the day) took 1-2 minutes. Various junk is left as comments in `db_functions.py`, as this is the best way to check/apply changes to all files or folders. For example, embedded ID3 tags were first identified, secondly deleted, and thirdly ignored, over the days of scanning / fixing.
 
-My music folder is organized by artist. An artist folder contains album folders or single tracks (and potentially other hidden files). Album folders can contain tracks, images, and other files
-
-These folders and files were used to populate 3 SQLite tables: **Artists**, **Albums**, and **Tracks**.
+My music folder is organized by artist. An artist folder contains album folders or single tracks (and potentially other hidden files). Album folders can contain tracks, images, and other files. These folders and files were used to populate 3 SQLite tables: **Artists**, **Albums**, and **Tracks**.
 
 The **Artists** table contains the following columns:
 * Name (TEXT, PRIMARY KEY)
@@ -46,6 +44,8 @@ The fix step is the main thing that varies. For more complex fixes (user-decisio
 
 ## File Descriptions
 
+See the python files and their comments for more details. Comments in files low on the following table may be less descriptive, if the same process was described in a file higher up on the table..
+
 | fixes_ | Problem | Notes |
 | :----: | --- | --- |
 | `year_format.py` | Tagged date not in XXXX format | If tagged year and year in folder agree, fix file and save. If not, save to table and check last.fm for data |
@@ -60,6 +60,7 @@ The fix step is the main thing that varies. For more complex fixes (user-decisio
 | `artistTag.py` | Tagged Artist OR Tagged Album Artist doesn't match Folder artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. This one allows selection of multiple options. |
 
 ## Other
+`db_timer_example.txt` shows the TXT file output from `db_creation.py`, a sample database is not provided.
 
 I included `info_MP4_tags.py` to show how to scan through an MP4 (.m4a file) collection. Unlike standardized [ID3 tags](https://id3.org/id3v2.3.0#Declared_ID3v2_frames), there is no convention for these files to follow. To get an idea of what can be modified outside of Mutagen's EasyMP4 module, you can run this over known MP4 files and see:
 
