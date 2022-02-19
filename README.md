@@ -38,7 +38,13 @@ Fixes are saved as individual scripts*, varying in complexity, to facilitate cha
 
 1) Identify certain problem
 2) Execute SQLite query to gather problem-children
-3) Iterate through children and: **Fix** / **Ignore** - save with entry into **Exceptions** table / **Flag** - HTML or CSV table saved for later referral
+3) Iterate through children and: 
+
+    **Fix**, or . . .
+    
+    **Ignore** - save with entry into **Exceptions** table, or . . .
+    
+    **Flag** - HTML or CSV table saved for later referral
 
 The fix step is the main thing that varies. For more complex fixes (user-decisions needed), I provided simple options to speed up the process. Some scripts utilize [Rich](https://rich.readthedocs.io/en/stable/introduction.html) to improve readability. Note, I used all of these with [Spyder](https://www.spyder-ide.org/), and therefore a very limited set of Rich's features.
 
@@ -55,8 +61,8 @@ See the python files and their comments for more details. Comments in files low 
 | `year_NullFill.py` | No Tag date for song | Adds tag date based on folder year (all have been checked from above step) |
 | `tagpicture.py` | I don't want embedded images in files | Delete all tracks with picture in tag, if folder lacks picture, then save the first one in the folder. |
 | `nopic.py` | No Cover Art | Use Artist/Album to get picture from last.fm, if not found save info with link for [wikipedia](https://en.wikipedia.org/wiki/Main_Page) search to separate file |
-| `hiddenpic.py` | Hidden image files, Cover Art already there. Empty image files leftover from previous script fix. | Various iterations to keep file and delete rest, based on file size |
-| `albumartist_VA to folder.py` | Tag album artist is some form of "Various Artists" | Switch it to the artist indicated by Folder |
+| `hiddenpic.py` | Hidden images. Empty image files leftover from previous script fix. | Various iterations to keep one and delete rest, based on file size |
+| `albumartist_VA to folder.py` | Tag album artist is some form of "Various Artists" | Switch it to the artist indicated by Folder or delete if not useful |
 | `AlbArt-VA.py` | Tag Artist and Folder Artist disagree, no Tag album artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. |
 | `albumTag.py` | Tag Album and Folder Album disagree | Print tag vs folder info, provide various fixing **options** for user. |
 | `artistTag.py` | Tag Artist OR Tag Album Artist doesn't match Folder artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. This one allows selection of multiple options. |
