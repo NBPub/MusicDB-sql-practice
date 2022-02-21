@@ -64,7 +64,7 @@ Finished in 1.61 seconds
 ```
 [Timer](/db_timer_example.txt)
 
-*\*Scripts run with [Spyder IDE](https://www.spyder-ide.org/), progress bar appearance can be improved for terminal*
+*\*I ran scripts with [Spyder IDE](https://www.spyder-ide.org/), progress bar appearance can be improved for terminal*
 
 # Part Two - Various Fixes
 
@@ -104,8 +104,6 @@ See the python files and their comments for more details. Comments in files low 
 | `discnum.py` | Some discnumbers bogus (0) or wrong | For every album folder, if tracks contain more than one discnumber, print info for user to check and provide user options to fix: Change all to 1, change all to X, change some to X, delete all discnumbers |
 
 ## Other
-[`db_timer_example.txt`](/db_timer_example.txt) shows the TXT file output from `db_creation.py`, a sample database is not provided.
-
 I included [`info_MP4_tags.py`](/info_MP4-tags.py) to show how to scan through an MP4 (.m4a file) collection. Unlike standardized [ID3 tags](https://id3.org/id3v2.3.0#Declared_ID3v2_frames), there is no convention for these files to follow. To get an idea of what can be modified outside of Mutagen's EasyMP4 module, you can run this over known MP4 files and see:
 
 * Unique tags within files for each folder
