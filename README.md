@@ -15,7 +15,10 @@ The following are python packages used when drafting the code. I used my Anacond
 * [BeautifulSoup4](https://pypi.org/project/beautifulsoup4/) **4.10.0** - scrape [last.fm](last.fm) album pages due to failure of API
 * [pandas](https://pandas.pydata.org/) **1.3.5** - for some reporting outputs. Python's [CSV](https://docs.python.org/3/library/csv.html) could be used instead.
 
-I also isoloated the packages above, except pandas, in a virtual environment and ensured the scripts work as expected. A [requirements.txt](https://github.com/NBPub/MusicDB-sql-practice/blob/main/requirements.txt) file is provided for easy installation `pip install -r requirements.txt` of dependencies. Install pandas on top of that if you want to use the scripts that utilize it, or create an issue here and I can add a alternative script that will not require pandas.
+I also isoloated the packages above, except pandas, in a virtual environment and ensured the scripts work as expected. A [requirements.txt](https://github.com/NBPub/MusicDB-sql-practice/blob/main/requirements.txt) file is provided for easy installation of dependencies.
+`pip install -r requirements.txt`
+
+Install pandas on top of that if you want to use the scripts that utilize it, or create an issue here and I can add a alternative script that will not require pandas. `pip install pandas`
 
 
 # Part One - DB Creation
