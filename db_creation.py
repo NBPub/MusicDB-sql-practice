@@ -47,7 +47,7 @@ with open(f'{time.asctime().replace(":","•")}-optional-description-here.txt', 
             # Artist Folders - Albums+
             albums_dir(con, tunes, pics)
             count1 = con.execute("SELECT count(rowid) from Albums").fetchone()[0]
-            count2 = con.execute("SELECT count(name) from Artists where albums > 0").fetchone()[0]
+            count2 = con.execute("SELECT count(name) from Artists").fetchone()[0]
             print(f'{count1} albums for {count2} artists.')
         
         
