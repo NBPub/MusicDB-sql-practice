@@ -24,9 +24,9 @@ Install pandas on top of that if you want to use the scripts that utilize it, or
 # Part One - DB Creation
 *Prior work: Ensure all album folder names follow format `<ALBUM-NAME> (<YEAR>) [<Format>]`*
 
-[db_creation](https://github.com/NBPub/MusicDB-sql-practice/blob/main/db_creation.py)
+[db_creation](/db_creation.py)
 
-[db_functions](https://github.com/NBPub/MusicDB-sql-practice/blob/main/db_functions.py)
+[db_functions](/db_functions.py)
 
 `db_creation.py` and `db_functions.py` serve to create the SQLite database. A timer and progress bar provide rcords of scan times and live monitoring\*. For my library, initial scans took 6-8 minutes, and subsequent scans (not the first of the day) took 1-2 minutes. Various junk is left as comments in `db_functions.py`, as this is the best way to check/apply changes to all files or folders. For example, embedded ID3 pictures were first identified, secondly deleted, and thirdly ignored, over the days of scanning / fixing.
 
@@ -42,6 +42,27 @@ The **Artists** table contains the following columns:
 * Modified (TEXT)
 
 Initially I captured the date modified of the folders so I could scan for recent changes and then update the database accordingly. However, I found it was fast enough to simply re-scan the entire directory after making changes. Details for the other tables can be inferred from the code. During the scan, an **Errors** table was used to capture any problem areas. An **Exceptions** table was also added to improve the tag-fixing process. This table is persisted through re-scans, whereas the others are deleted and recreated.
+
+***End of DB creation***
+![Home](/screenshot.png "Progress Bar")
+
+```
+Tables made and Artists filled
+Finished in 0.31 seconds
+
+
+3062 albums for 1538 artists.
+Finished in 1.77 seconds
+
+
+39383 tracks for 3062 albums
+Finished in 363.30 seconds
+
+
+Artist tallies for tracks and albums
+Finished in 1.61 seconds
+```
+[Timer](/db_timer_example.txt)
 
 *\*Scripts run with [Spyder IDE](https://www.spyder-ide.org/), progress bar appearance can be improved for terminal*
 
@@ -83,9 +104,9 @@ See the python files and their comments for more details. Comments in files low 
 | `discnum.py` | Some discnumbers bogus (0) or wrong | For every album folder, if tracks contain more than one discnumber, print info for user to check and provide user options to fix: Change all to 1, change all to X, change some to X, delete all discnumbers |
 
 ## Other
-[`db_timer_example.txt`](https://github.com/NBPub/MusicDB-sql-practice/blob/main/db_timer_example.txt) shows the TXT file output from `db_creation.py`, a sample database is not provided.
+[`db_timer_example.txt`](/db_timer_example.txt) shows the TXT file output from `db_creation.py`, a sample database is not provided.
 
-I included [`info_MP4_tags.py`](https://github.com/NBPub/MusicDB-sql-practice/blob/main/info_MP4-tags.py) to show how to scan through an MP4 (.m4a file) collection. Unlike standardized [ID3 tags](https://id3.org/id3v2.3.0#Declared_ID3v2_frames), there is no convention for these files to follow. To get an idea of what can be modified outside of Mutagen's EasyMP4 module, you can run this over known MP4 files and see:
+I included [`info_MP4_tags.py`](/info_MP4-tags.py) to show how to scan through an MP4 (.m4a file) collection. Unlike standardized [ID3 tags](https://id3.org/id3v2.3.0#Declared_ID3v2_frames), there is no convention for these files to follow. To get an idea of what can be modified outside of Mutagen's EasyMP4 module, you can run this over known MP4 files and see:
 
 * Unique tags within files for each folder
 * Total occurences of each tag
