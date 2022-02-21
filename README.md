@@ -74,11 +74,13 @@ See the python files and their comments for more details. Comments in files low 
 | `year_NullFill.py` | No Tag date for song | Adds tag date based on folder year (all have been checked from above step) |
 | `tagpicture.py` | I don't want embedded images in files | Delete all tracks with picture in tag, if folder lacks picture, then save the first one in the folder. |
 | `nopic.py` | No Cover Art | Use Artist/Album to get picture from last.fm, if not found save info with link for [wikipedia](https://en.wikipedia.org/wiki/Main_Page) search to separate file |
-| `hiddenpic.py` | Hidden images. Empty image files leftover from previous script fix. | Various iterations to keep one and delete rest, based on file size |
+| `hiddenpic.py` | Hidden images in folder. Empty image files leftover from previous script fix. | Various iterations to keep one and delete rest, based on file size |
+| `onepic_name.py` | Proper image is there, but improper name for player. | If needed, change image file name to one recognized by music player. |
 | `albumartist_VA to folder.py` | Tag album artist is some form of "Various Artists" | Switch it to the artist indicated by Folder or delete if not useful |
 | `AlbArt-VA.py` | Tag Artist and Folder Artist disagree, no Tag album artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. |
 | `albumTag.py` | Tag Album and Folder Album disagree | Print tag vs folder info, provide various fixing **options** for user. |
 | `artistTag.py` | Tag Artist OR Tag Album Artist doesn't match Folder artist | For each album print tagged artist(s) and folder artist, provide various fixing **options** for user. This one allows selection of multiple options. |
+| `discnum.py` | Some discnumbers bogus (0) or wrong | For every album folder, if tracks contain more than one discnumber, print info for user to check and provide user options to fix: Change all to 1, change all to X, change some to X, delete all discnumbers |
 
 ## Other
 [`db_timer_example.txt`](https://github.com/NBPub/MusicDB-sql-practice/blob/main/db_timer_example.txt) shows the TXT file output from `db_creation.py`, a sample database is not provided.
