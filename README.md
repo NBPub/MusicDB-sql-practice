@@ -110,3 +110,18 @@ I included [`info_MP4_tags.py`](/info_MP4-tags.py) to show how to scan through a
 * Total occurences of each tag
 
 I used this to figure out how to access the embedded pictures and the song's comments.
+
+# Part 3 - Data Visualization
+
+I used the resulting database to assess my music collection. If requested, I can update the requirements.txt file and provide examples of code used to generate the graphs. The following packages were used:
+
+* [pandas](https://pandas.pydata.org/)
+* [matplotlib](https://matplotlib.org/stable/index.html)
+* [seaborn](https://seaborn.pydata.org/index.html)
+
+
+### Release Year Distribution
+**Songs**
+![Home](/data analysis/date-tracks.png "Song Years")
+**Albums**
+![Home](/data analysis/date-albums.png "Album Years")
