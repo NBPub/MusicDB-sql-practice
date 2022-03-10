@@ -180,6 +180,9 @@ def tracks_dir(con, tunes, pics, spec):
                 try:
                     if val.suffix == '.mp3':
                         data = dict(EasyID3(val)) # can delay converting to dictionary if making any modifications to the file
+                        # Example to get length in seconds, would need to modify DB table and other code to properly capture
+                        # f = MP3(val)
+                        # data["length"] = int(f.info.length)
                         f = ID3(val) # Deep tag read for comment or picture 
                                          
                         # Tag Picture
