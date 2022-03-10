@@ -125,6 +125,6 @@ I used the resulting database to assess my music collection. If requested, I can
 ![Home](/data%20analysis/date-albums.png "Album Years")
 
 ### Song Data by Format
-![Home](/data%20analysis/format-track-tracksize-nosmol.png "Track Size Distribution")
-![Home](/data%20analysis/format-track-MBperMIN-nosmol.png "Length Normalized Track Size Distribution")
-![Home](/data%20analysis/format-track-duration-min-nosmol-zoom.png "Track Length Distribution - zoomed")
+![Home](/data%20analysis/format-track-tracksize-nosmol.jpg "Track Size Distribution")
+![Home](/data%20analysis/format-track-MBperMIN-nosmol.jpg "Length Normalized Track Size Distribution")
+![Home](/data%20analysis/format-track-duration-min-nosmol-zoom.jpg "Track Length Distribution - zoomed")
