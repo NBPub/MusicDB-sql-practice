@@ -121,7 +121,10 @@ I used the resulting database to assess my music collection. If requested, I can
 
 
 ### Release Year Distribution
-**Songs**
-![Home](/data analysis/date-tracks.png "Song Years")
-**Albums**
-![Home](/data analysis/date-albums.png "Album Years")
+![Home](/data%20analysis/date-tracks.png "Song Years")
+![Home](/data%20analysis/date-albums.png "Album Years")
+
+### Song Data by Format
+![Home](/data%20analysis/format-track-tracksize-nosmol.png "Track Size Distribution")
+![Home](/data%20analysis/format-track-MBperMIN-nosmol.png "Length Normalized Track Size Distribution")
+![Home](/data%20analysis/format-track-duration-min-nosmol-zoom.png "Track Length Distribution - zoomed")
